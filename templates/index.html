@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CurePolygon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        /* Existing styles */
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-top: 0;
+            margin-left: 2px;
+        }
+
+        .myimg {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #2C3E50;
+            border-radius: 25px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background: linear-gradient(45deg, #16A9C1, #3498DB);
+            padding: 0;
+        }
+
+        .navbar-brand,
+        .nav-link,
+        .navbar-toggler-icon {
+            color: #ECF0F1 !important;
+        }
+
+        .nav-link:hover,
+        .navbar-brand:hover {
+            color: #2980B9 !important;
+        }
+
+        .form-container {
+            background: linear-gradient(135deg, #2C3E50, #3498DB);
+            color: #ECF0F1;
+            border-radius: 15px;
+            padding: 40px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3498DB, #2980B9);
+            border-color: #3498DB;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2980B9, #1F618D);
+            border-color: #2980B9;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #E74C3C, #C0392B);
+            border-color: #E74C3C;
+        }
+
+        .btn-danger:hover {
+            background: linear-gradient(135deg, #C0392B, #A93226);
+            border-color: #C0392B;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #34495E, #2C3E50);
+            color: #ECF0F1;
+        }
+
+        .modal-body {
+            background: #ECF0F1;
+            color: #2C3E50;
+        }
+
+        .toggle-button {
+            padding: 4px;
+            margin: 5px 40px 5px 0;
+            font-size: 20px;
+            font-weight: bold;
+            width: 140px;
+            border-radius: 5px;
+            color: #ECF0F1;
+            background: linear-gradient(135deg, #2C3E50, #3498DB);
+        }
+
+        .toggle-button:hover {
+            opacity: 0.8;
+            background: linear-gradient(135deg, #2980B9, #1F618D);
+        }
+
+        .btn-disease {
+            background: linear-gradient(135deg, #E67E22, #D35400);
+        }
+
+        .btn-description {
+            background: linear-gradient(135deg, #3498DB, #2980B9);
+        }
+
+        .btn-precaution {
+            background: linear-gradient(135deg, #9B59B6, #8E44AD);
+        }
+
+        .btn-medications {
+            background: linear-gradient(135deg, #E74C3C, #C0392B);
+        }
+
+        .btn-workouts {
+            background: linear-gradient(135deg, #2ECC71, #27AE60);
+        }
+
+        .btn-diets {
+            background: linear-gradient(135deg, #F1C40F, #F39C12);
+        }
+
+        .result-container {
+            background: linear-gradient(to bottom right, #7ed6df, #70a1d7); /* Gradient background in shades of cyan */
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex; /* Flexbox for alignment */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            justify-content: center; /* Center items vertically */
+            text-align: center; /* Center text */
+            overflow: hidden; /* Hide overflow to control height dynamically */
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid p-0">
+            <!-- Logo at the top-left corner -->
+            <div class="logo">
+                <img class="myimg" src="{{ url_for('static', filename='img.jpg') }}" alt="">
+            </div>
+            <a class="navbar-brand" href="#"> CurePolygon Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/developer">Developer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog">Blog</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Left column -->
+            <div class="col-md-6">
+                <h1 class="mt-4 my-4 text-center text-green">CurePolygon Hub</h1>
+                <div class="form-container">
+                    <form action="/predict" method="post">
+                        <div class="form-group">
+                            <label for="symptoms">Enter Symptoms:</label>
+                            <input type="text" class="form-control" id="symptoms" name="symptoms"
+                                placeholder="Enter symptoms like itching, headache, etc.">
+                        </div>
+                        <br>
+                        <button type="button" id="startSpeechRecognition" class="btn btn-primary">
+                            Start Voice Input
+                        </button>
+                        <br>
+                        <!-- Display the transcribed text here -->
+                        <div name="mysysms" id="transcription"></div>
+                        {% if message %}
+                        <p>{{ message }}</p>
+                        {% endif %}
+                        <br>
+                        <button type="submit" class="btn btn-danger btn-lg"
+                            style="width: 100%; padding: 14px; margin-bottom: 5px;">Predict</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right column -->
+            <div class="col-md-6">
+                {% if predicted_disease %}
+                <!-- Results -->
+                <h1 class="text-center my-4 mt-4">Forecast Insights</h1>
+                <div class="result-container" id="resultContainer">
+                    <!-- First block of buttons -->
+                    <div class="row mb-3">
+                        <div class="col-6 mb-3">
+                            <button class="toggle-button btn-disease" data-bs-toggle="modal"
+                                data-bs-target="#diseaseModal">Disease</button>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <button class="toggle-button btn-description" data-bs-toggle="modal"
+                                data-bs-target="#descriptionModal">Description</button>
+                        </div>
+                    </div>
+                    <!-- Second block of buttons -->
+                    <div class="row mb-3">
+                        <div class="col-6 mb-3">
+                            <button class="toggle-button btn-precaution" data-bs-toggle="modal"
+                                data-bs-target="#precautionModal">Precautions</button>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <button class="toggle-button btn-medications" data-bs-toggle="modal"
+                                data-bs-target="#medicationsModal">Medications</button>
+                        </div>
+                    </div>
+                    <!-- Third block of buttons -->
+                    <div class="row">
+                        <div class="col-6">
+                            <button class="toggle-button btn-workouts" data-bs-toggle="modal"
+                                data-bs-target="#workoutsModal">Workouts</button>
+                        </div>
+                        <div class="col-6">
+                            <button class="toggle-button btn-diets" data-bs-toggle="modal"
+                                data-bs-target="#dietsModal">Diet Plans</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Disease Modal -->
+    <div class="modal fade" id="diseaseModal" tabindex="-1" aria-labelledby="diseaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="diseaseModalLabel">Predicted Disease</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ predicted_disease }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Description Modal -->
+    <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="descriptionModalLabel">Disease Description</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ dis_des }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Precaution Modal -->
+    <div class="modal fade" id="precautionModal" tabindex="-1" aria-labelledby="precautionModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="precautionModalLabel">Precautions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        {% for i in my_precautions %}
+                        <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Medications Modal -->
+    <div class="modal fade" id="medicationsModal" tabindex="-1" aria-labelledby="medicationsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="medicationsModalLabel">Medications</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        {% for i in medications %}
+                        <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Workouts Modal -->
+    <div class="modal fade" id="workoutsModal" tabindex="-1" aria-labelledby="workoutsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="workoutsModalLabel">Workout Routines</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        {% for i in workout %}
+                        <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diets Modal -->
+    <div class="modal fade" id="dietsModal" tabindex="-1" aria-labelledby="dietsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dietsModalLabel">Diet Plans</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        {% for i in my_diet %}
+                        <li>{{ i }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const startSpeechRecognitionButton = document.getElementById('startSpeechRecognition');
+        const transcriptionDiv = document.getElementById('transcription');
+        const resultContainer = document.getElementById('resultContainer');
+
+        startSpeechRecognitionButton.addEventListener('click', initiateSpeechRecognition);
+
+        function initiateSpeechRecognition() {
+            const recognition = new webkitSpeechRecognition(); // Use webkitSpeechRecognition for compatibility
+
+            recognition.lang = 'en-US'; // Set the language for recognition
+
+            recognition.onresult = function (event) {
+                const result = event.results[0][0].transcript;
+                transcriptionDiv.textContent = result;
+            };
+
+            recognition.onend = function () {
+                console.log('Speech recognition ended.');
+            };
+
+            recognition.start();
+        }
+
+        // Dynamically adjust the height of result-container based on its content
+        window.addEventListener('load', function () {
+            resultContainer.style.height = resultContainer.scrollHeight + 'px';
+        });
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
