@@ -26,6 +26,10 @@ The system incorporates additional datasets (`symtoms_df.csv`, `precautions_df.c
 - **Diets:** Recommends suitable diet plans.
 - **Workout:** Suggests workout routines beneficial for specific conditions.
 
+## Deployed Model Demo
+![CurePolygon](https://github.com/Aryansh-kr/Hangman_Game/assets/127012188/0e387764-d332-4253-94a2-7fcfb874a953)
+
+
 ## Usage
 
 1. **Input Symptoms:** Users input their symptoms (comma-separated).
