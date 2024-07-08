@@ -1,5 +1,6 @@
-Flask
-sklearn
+flask
+scikit-learn
+flash_sqlalchemy
 pandas
 numpy
 matplotlib
